@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{5F785073-289E-4156-B926-E07A8582C8BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D765613F-CD6E-4E1A-A20C-EDE643505825}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{85324B50-B42F-40F5-A7E3-891235C69975}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Whistle", "Source\Whistle\Whistle.xproj", "{D1DEBBA7-495A-4F68-AFF9-7E85DF705FE9}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Whistle.Tests", "Tests\Whistle.Tests\Whistle.Tests.xproj", "{5DB9B69A-10BE-436E-9ADE-E288308D5840}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1DEBBA7-495A-4F68-AFF9-7E85DF705FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1DEBBA7-495A-4F68-AFF9-7E85DF705FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1DEBBA7-495A-4F68-AFF9-7E85DF705FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1DEBBA7-495A-4F68-AFF9-7E85DF705FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DB9B69A-10BE-436E-9ADE-E288308D5840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB9B69A-10BE-436E-9ADE-E288308D5840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB9B69A-10BE-436E-9ADE-E288308D5840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB9B69A-10BE-436E-9ADE-E288308D5840}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D1DEBBA7-495A-4F68-AFF9-7E85DF705FE9} = {5F785073-289E-4156-B926-E07A8582C8BF}
+		{5DB9B69A-10BE-436E-9ADE-E288308D5840} = {85324B50-B42F-40F5-A7E3-891235C69975}
+	EndGlobalSection
+EndGlobal

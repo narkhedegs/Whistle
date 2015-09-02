@@ -1,0 +1,28 @@
+{
+    "version": "0.0.0",
+    "title": "Whistle.Tests",
+    "description": "Unit tests for Whistle.",
+    "authors": [
+        "narkhedegs@gmail.com"
+    ],
+    "owners": [
+        "narkhedegs@gmail.com"
+    ],
+    "copyright": "Copyright (C) narkhedegs@gmail.com",
+    "tags": [
+    ],
+    "projectUrl": "https://github.com/narkhedegs/CakeTryout",
+    "licenseUrl": "https://raw.githubusercontent.com/narkhedegs/CakeTryout/master/LICENSE",
+    "iconUrl": "https://raw.githubusercontent.com/narkhedegs/CakeTryout/master/cake.png",
+
+    "frameworks": {
+        "net45": { },
+        "net451": { },
+        "net452": { },
+        "net46": { }
+    },
+    "dependencies": {
+        "Whistle": "0.0.0",
+        "NUnit": "2.6.4"
+    }
+}

@@ -1,0 +1,24 @@
+﻿{
+  "version": "0.0.0",
+  "title": "Whistle",
+  "description": "Whistle",
+  "authors": [
+    "narkhedegs@gmail.com"
+  ],
+  "owners": [
+    "narkhedegs@gmail.com"
+  ],
+  "copyright": "Copyright (C) narkhedegs@gmail.com",
+  "tags": [
+  ],
+  "projectUrl": "https://github.com/narkhedegs/Whistle",
+  "licenseUrl": "https://raw.githubusercontent.com/narkhedegs/Whistle/master/LICENSE",
+  "iconUrl": "https://raw.githubusercontent.com/narkhedegs/Whistle/master/whistle.png",
+
+  "frameworks": {
+    "net45": { },
+    "net451": { },
+    "net452": { },
+    "net46": { }
+  }
+}
