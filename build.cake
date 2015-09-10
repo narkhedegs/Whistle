@@ -90,16 +90,23 @@ Task("Create-Directories")
 
 Task("Install-Framework")
 	.IsDependentOn("Create-Directories")
+	.WithCriteria(() => !local)
     .Does(() =>
 {
 	StartPowershellScript("iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))");
+});
+
+Task("Set-Framework")
+	.IsDependentOn("Install-Framework")
+    .Does(() =>
+{
 	StartPowershellScript(@"
 		$GlobalJson = Get-Content -Raw -Path global.json | ConvertFrom-Json
 		dnvm use $GlobalJson.sdk.version -r $GlobalJson.sdk.runtime -arch $GlobalJson.sdk.architecture -p");
 });
 
 Task("Restore-NuGet-Packages")
-	.IsDependentOn("Install-Framework")
+	.IsDependentOn("Set-Framework")
     .Does(() =>
 {
 	StartPowershellScript("dnu.cmd restore");
@@ -138,6 +145,7 @@ Task("Copy-Files")
     CopyFiles(GetFiles("./Source/**/*.dll"), temporaryDirectory);
 	CopyFiles(GetFiles("./Tests/**/*.dll"), temporaryDirectory);
 	CopyFiles(GetFiles("./Libraries/NuGetPackages/NUnit/**/*.dll"), temporaryDirectory);
+	CopyFiles(GetFiles("./Libraries/NuGetPackages/Moq/**/*.dll"), temporaryDirectory);
 });
 
 Task("Run-Unit-Tests")

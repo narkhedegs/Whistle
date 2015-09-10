@@ -3,6 +3,14 @@
   "version": 1,
   "targets": {
     ".NETFramework,Version=v4.5": {
+      "Moq/4.2.1507.0118": {
+        "compile": {
+          "lib/net40/Moq.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Moq.dll": {}
+        }
+      },
       "NUnit/2.6.4": {
         "compile": {
           "lib/nunit.framework.dll": {}
@@ -13,6 +21,14 @@
       }
     },
     ".NETFramework,Version=v4.5.1": {
+      "Moq/4.2.1507.0118": {
+        "compile": {
+          "lib/net40/Moq.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Moq.dll": {}
+        }
+      },
       "NUnit/2.6.4": {
         "compile": {
           "lib/nunit.framework.dll": {}
@@ -23,6 +39,14 @@
       }
     },
     ".NETFramework,Version=v4.5.2": {
+      "Moq/4.2.1507.0118": {
+        "compile": {
+          "lib/net40/Moq.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Moq.dll": {}
+        }
+      },
       "NUnit/2.6.4": {
         "compile": {
           "lib/nunit.framework.dll": {}
@@ -33,6 +57,14 @@
       }
     },
     ".NETFramework,Version=v4.6": {
+      "Moq/4.2.1507.0118": {
+        "compile": {
+          "lib/net40/Moq.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Moq.dll": {}
+        }
+      },
       "NUnit/2.6.4": {
         "compile": {
           "lib/nunit.framework.dll": {}
@@ -44,6 +76,20 @@
     }
   },
   "libraries": {
+    "Moq/4.2.1507.0118": {
+      "sha512": "QfnD/kZcaV6mX1cWHta3yMn/d9ly9Q62yNmHQVArKaZcFcuFb4USYeHR/4XoA258WeJ2XfrGMPVQVIURRCoyNw==",
+      "files": [
+        "lib/net35/Moq.dll",
+        "lib/net35/Moq.xml",
+        "lib/net40/Moq.dll",
+        "lib/net40/Moq.xml",
+        "lib/sl5/Moq.Silverlight.dll",
+        "lib/sl5/Moq.Silverlight.xml",
+        "Moq.4.2.1507.118.nupkg",
+        "Moq.4.2.1507.118.nupkg.sha512",
+        "Moq.nuspec"
+      ]
+    },
     "NUnit/2.6.4": {
       "sha512": "cmSPvaCMRSP0DI19FP1Liw9DyJY3E/vOY1OrVaeJBZpZFWHkmT3fB9ngGWnZX/ftvA7zJEbghEaw3Yd+u4YFAw==",
       "files": [
@@ -59,7 +105,8 @@
   "projectFileDependencyGroups": {
     "": [
       "Whistle >= 0.0.0",
-      "NUnit >= 2.6.4"
+      "NUnit >= 2.6.4",
+      "Moq >= 4.2.1507.118"
     ],
     ".NETFramework,Version=v4.5": [],
     ".NETFramework,Version=v4.5.1": [],
