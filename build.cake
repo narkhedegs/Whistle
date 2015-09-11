@@ -20,7 +20,9 @@ var isPullRequest = AppVeyor.Environment.PullRequest.IsPullRequest;
 var releaseNotes = ParseReleaseNotes("./ReleaseNotes.md");
 
 // Get version.
-var semanticVersion = releaseNotes.Version.ToString();
+var buildNumber = AppVeyor.Environment.Build.Number;
+var version = releaseNotes.Version.ToString();
+var semanticVersion = (local || target == "Publish") ? version : (version + string.Concat("-build-", buildNumber));
 
 // Define directories.
 var toolsDirectory = Directory("./Tools");
@@ -236,11 +238,11 @@ Task("Default")
     .IsDependentOn("Run-Unit-Tests");
 
 Task("Package")
-    .IsDependentOn("Create-NuGet-Packages");
+    .IsDependentOn("Update-AppVeyor-Build-Number")
+	.IsDependentOn("Upload-AppVeyor-Artifacts");
 
 Task("Publish")
 	.IsDependentOn("Update-AppVeyor-Build-Number")
-	.IsDependentOn("Upload-AppVeyor-Artifacts")
     .IsDependentOn("Publish-NuGet-Packages");
 
 ///////////////////////////////////////////////////////////////////////////////
