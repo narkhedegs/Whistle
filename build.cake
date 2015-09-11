@@ -102,8 +102,8 @@ Task("Install-Framework")
     .Does(() =>
 {
 	StartPowershellScript(@"
-		$env:DNX_HOME = "C:\Users\appveyor\.dnx"
-		$env:DNX_GLOBAL_HOME = "C:\Users\appveyor\.dnx"
+		$env:DNX_HOME = ""C:\Users\appveyor\.dnx""
+		$env:DNX_GLOBAL_HOME = ""C:\Users\appveyor\.dnx""
 		$GlobalJson = Get-Content -Raw -Path global.json | ConvertFrom-Json
 		dnvm install $GlobalJson.sdk.version -r $GlobalJson.sdk.runtime -arch $GlobalJson.sdk.architecture");
 });
