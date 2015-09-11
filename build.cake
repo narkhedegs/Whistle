@@ -88,12 +88,22 @@ Task("Create-Directories")
 	});
 });
 
-Task("Install-Framework")
+Task("Install-Framework-Manager")
 	.IsDependentOn("Create-Directories")
 	.WithCriteria(() => !local)
     .Does(() =>
 {
 	StartPowershellScript("iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))");
+});
+
+Task("Install-Framework")
+	.IsDependentOn("Install-Framework-Manager")
+	.WithCriteria(() => !local)
+    .Does(() =>
+{
+	StartPowershellScript(@"
+		$GlobalJson = Get-Content -Raw -Path global.json | ConvertFrom-Json
+		dnvm install $GlobalJson.sdk.version -r $GlobalJson.sdk.runtime -arch $GlobalJson.sdk.architecture");
 });
 
 Task("Set-Framework")
