@@ -198,7 +198,7 @@ Task("Update-AppVeyor-Build-Number")
 });
 
 Task("Upload-AppVeyor-Artifacts")
-    .IsDependentOn("Package")
+    .IsDependentOn("Create-NuGet-Packages")
     .WithCriteria(() => isRunningOnAppVeyor)
     .Does(() =>
 {
@@ -238,11 +238,12 @@ Task("Default")
     .IsDependentOn("Run-Unit-Tests");
 
 Task("Package")
-    .IsDependentOn("Update-AppVeyor-Build-Number")
+	.IsDependentOn("Update-AppVeyor-Build-Number")
 	.IsDependentOn("Upload-AppVeyor-Artifacts");
 
 Task("Publish")
 	.IsDependentOn("Update-AppVeyor-Build-Number")
+	.IsDependentOn("Upload-AppVeyor-Artifacts")
     .IsDependentOn("Publish-NuGet-Packages");
 
 ///////////////////////////////////////////////////////////////////////////////
