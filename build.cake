@@ -112,7 +112,7 @@ Task("Set-Framework")
 {
 	StartPowershellScript(@"
 		$GlobalJson = Get-Content -Raw -Path global.json | ConvertFrom-Json
-		dnvm use $GlobalJson.sdk.version -r $GlobalJson.sdk.runtime -arch $GlobalJson.sdk.architecture -p");
+		dnvm use $GlobalJson.sdk.version -r $GlobalJson.sdk.runtime -arch $GlobalJson.sdk.architecture");
 });
 
 Task("Restore-NuGet-Packages")
