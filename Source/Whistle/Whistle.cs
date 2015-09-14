@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Narkhedegs.Diagnostics
@@ -59,7 +61,54 @@ namespace Narkhedegs.Diagnostics
         /// </returns>
         public Task<WhistleResponse> Blow(params string[] arguments)
         {
-            throw new NotImplementedException();
+            _whistleOptionsValidator.Validate(_whistleOptions);
+
+            var processStartInformation = _processStartInformationBuilder.Build(_whistleOptions, arguments);
+
+            var taskCompletionSource = new TaskCompletionSource<WhistleResponse>();
+
+            var standardOutput = new List<string>();
+            var standardError = new List<string>();
+
+            var process = new Process
+            {
+                StartInfo = processStartInformation,
+                EnableRaisingEvents = true
+            };
+
+            process.OutputDataReceived += (sender, eventArguments) =>
+            {
+                if (eventArguments.Data != null)
+                {
+                    standardOutput.Add(eventArguments.Data);
+                }
+            };
+
+            process.ErrorDataReceived += (sender, eventArguments) =>
+            {
+                if (eventArguments.Data != null)
+                {
+                    standardError.Add(eventArguments.Data);
+                }
+            };
+
+            process.Exited += (sender, eventArguments) => taskCompletionSource.TrySetResult(new WhistleResponse
+            {
+                StandardError =
+                    standardError.Count > 0 ? string.Join(string.Empty, standardError.ToArray()) : string.Empty,
+                StandardOutput =
+                    standardOutput.Count > 0 ? string.Join(string.Empty, standardOutput.ToArray()) : string.Empty
+            });
+
+            if (process.Start() == false)
+            {
+                taskCompletionSource.TrySetException(new InvalidOperationException("Failed to start the executable."));
+            }
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+
+            return taskCompletionSource.Task;
         }
     }
 }
