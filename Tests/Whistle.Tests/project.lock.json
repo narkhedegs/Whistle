@@ -105,8 +105,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Whistle >= 0.0.0",
-      "NUnit >= 2.6.4",
-      "Moq >= 4.2.1507.118"
+      "NUnit >= 2.6.4"
     ],
     ".NETFramework,Version=v4.5": [],
     ".NETFramework,Version=v4.5.1": [],
