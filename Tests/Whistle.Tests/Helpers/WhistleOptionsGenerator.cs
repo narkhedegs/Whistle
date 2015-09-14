@@ -9,7 +9,8 @@ namespace Narkhedegs.Diagnostics.Tests.Helpers
             return new WhistleOptions
             {
                 ExecutableName = "Executable.exe",
-                WorkingDirectory = @"/Helpers"
+                WorkingDirectory = @"/Helpers",
+                ExitTimeout = null
             };
         }
 
@@ -58,6 +59,12 @@ namespace Narkhedegs.Diagnostics.Tests.Helpers
         public static WhistleOptions WithArguments(this WhistleOptions whistleOptions, IEnumerable<string> arguments)
         {
             whistleOptions.Arguments = arguments;
+            return whistleOptions;
+        }
+
+        public static WhistleOptions WithExitTimeout(this WhistleOptions whistleOptions, int? exitTimeout)
+        {
+            whistleOptions.ExitTimeout = exitTimeout;
             return whistleOptions;
         }
     }

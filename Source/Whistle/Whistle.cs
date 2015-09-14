@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Narkhedegs.Diagnostics
@@ -21,10 +22,10 @@ namespace Narkhedegs.Diagnostics
         /// Options that can be passed to <see cref="Whistle"/> to change its behaviour.
         /// </param>
         public Whistle(WhistleOptions options)
-            : this(options, 
-                   new WhistleOptionsValidator(), 
-                   new ProcessStartInformationBuilder())
-        {   
+            : this(options,
+                new WhistleOptionsValidator(),
+                new ProcessStartInformationBuilder())
+        {
         }
 
         /// <summary>
@@ -34,14 +35,14 @@ namespace Narkhedegs.Diagnostics
         /// <param name="whistleOptionsValidator">Implementation of <see cref="IWhistleOptionsValidator"/></param>
         /// <param name="processStartInformationBuilder">Implementation of <see cref="IProcessStartInformationBuilder"/></param>
         internal Whistle(
-            WhistleOptions whistleOptions, 
-            IWhistleOptionsValidator whistleOptionsValidator, 
+            WhistleOptions whistleOptions,
+            IWhistleOptionsValidator whistleOptionsValidator,
             IProcessStartInformationBuilder processStartInformationBuilder)
         {
-            if(whistleOptionsValidator == null)
+            if (whistleOptionsValidator == null)
                 throw new ArgumentNullException(nameof(whistleOptionsValidator));
 
-            if(processStartInformationBuilder == null)
+            if (processStartInformationBuilder == null)
                 throw new ArgumentNullException(nameof(processStartInformationBuilder));
 
             _whistleOptions = whistleOptions;
@@ -66,7 +67,8 @@ namespace Narkhedegs.Diagnostics
             var processStartInformation = _processStartInformationBuilder.Build(_whistleOptions, arguments);
 
             var taskCompletionSource = new TaskCompletionSource<WhistleResponse>();
-
+            var cancellationTokenSource = new CancellationTokenSource(_whistleOptions.ExitTimeout ?? Timeout.Infinite);
+            var cancellationToken = cancellationTokenSource.Token;
             var standardOutput = new List<string>();
             var standardError = new List<string>();
 
@@ -100,9 +102,19 @@ namespace Narkhedegs.Diagnostics
                     standardOutput.Count > 0 ? string.Join(string.Empty, standardOutput.ToArray()) : string.Empty
             });
 
+            cancellationToken.Register(() =>
+            {
+                if (!taskCompletionSource.Task.IsCompleted)
+                {
+                    process.CloseMainWindow();
+                    taskCompletionSource.TrySetException(new TimeoutException(
+                        $"{_whistleOptions.ExecutableName} took more than {_whistleOptions.ExitTimeout} milliseconds to exit."));
+                }
+            });
+
             if (process.Start() == false)
             {
-                taskCompletionSource.TrySetException(new InvalidOperationException("Failed to start the executable."));
+                taskCompletionSource.TrySetException(new InvalidOperationException($"{_whistleOptions.ExecutableName} failed to start."));
             }
 
             process.BeginOutputReadLine();

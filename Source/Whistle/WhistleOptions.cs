@@ -26,8 +26,16 @@ namespace Narkhedegs.Diagnostics
         public IEnumerable<string> Arguments { get; set; }
 
         /// <summary>
-        /// Gets or sets the working directory for the executable to be started.
+        /// Gets or sets the working directory for the executable to be started. If nothing is specified then the default value 
+        /// for WorkingDirectory is the Current Directory.
         /// </summary>
         public string WorkingDirectory { get; set; }
+
+        /// <summary>
+        /// ExitTimeout is time in milliseconds for which Whistle will wait for the external executable to exit. If the 
+        /// external executable exceeds the ExitTimeout then Whistle will terminate the executable and raise TimeoutException.
+        /// If ExitTimeout is null or is not specified then the default value for ExitTimeout is infinity <see cref="System.Threading.Timeout.Infinite"/>.
+        /// </summary>
+        public int? ExitTimeout { get; set; }
     }
 }

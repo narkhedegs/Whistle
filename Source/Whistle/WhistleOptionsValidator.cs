@@ -48,6 +48,9 @@ namespace Narkhedegs.Diagnostics
                 !Directory.Exists(whistleOptions.WorkingDirectory))
                 throw new ArgumentException(
                     "Could not find directory specified in the WorkingDirectory. Please make sure that a directory exists at the path specified by the WorkingDirectory and user has at least ReadOnly permission for the directory.");
+
+            if(whistleOptions.ExitTimeout != null && whistleOptions.ExitTimeout <= 0)
+                throw new ArgumentException("ExitTimeout must be an integer value greater than zero.");
         }
     }
 }

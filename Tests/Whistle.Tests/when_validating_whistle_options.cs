@@ -48,5 +48,19 @@ namespace Narkhedegs.Diagnostics.Tests
             Assert.Throws<ArgumentException>(
                 () => _whistleOptionsValidator.Validate(WhistleOptionsGenerator.Default().WithNonExistentWorkingDirectory()));
         }
+
+        [Test]
+        public void it_should_throw_ArgumentException_if_the_value_of_the_ExitTimeout_option_is_zero()
+        {
+            Assert.Throws<ArgumentException>(
+                () => _whistleOptionsValidator.Validate(WhistleOptionsGenerator.Default().WithExitTimeout(0)));
+        }
+
+        [Test]
+        public void it_should_throw_ArgumentException_if_the_value_of_the_ExitTimeout_option_is_less_than_zero()
+        {
+            Assert.Throws<ArgumentException>(
+                () => _whistleOptionsValidator.Validate(WhistleOptionsGenerator.Default().WithExitTimeout(-2)));
+        }
     }
 }
