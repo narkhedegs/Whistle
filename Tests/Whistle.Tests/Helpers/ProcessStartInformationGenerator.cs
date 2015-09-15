@@ -9,6 +9,9 @@ namespace Narkhedegs.Diagnostics.Tests.Helpers
             return new ProcessStartInfo
             {
                 UseShellExecute = false,
+                CreateNoWindow = true,
+                ErrorDialog = false,
+                WindowStyle = ProcessWindowStyle.Hidden,
                 RedirectStandardError = true,
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,

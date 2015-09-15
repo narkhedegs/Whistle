@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using Narkhedegs.Diagnostics.Tests.Helpers;
 using NUnit.Framework;
 
@@ -25,6 +24,36 @@ namespace Narkhedegs.Diagnostics.Tests
             var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
 
             Assert.AreEqual(false, processStartInformation.UseShellExecute);
+        }
+
+        [Test]
+        public void it_should_set_CreateNoWindow_property_to_true()
+        {
+            var whistleOptions = WhistleOptionsGenerator.Default();
+
+            var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
+
+            Assert.AreEqual(true, processStartInformation.CreateNoWindow);
+        }
+
+        [Test]
+        public void it_should_set_ErrorDialog_property_to_false()
+        {
+            var whistleOptions = WhistleOptionsGenerator.Default();
+
+            var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
+
+            Assert.AreEqual(false, processStartInformation.ErrorDialog);
+        }
+
+        [Test]
+        public void it_should_set_WindowStyle_property_to_be_hidden()
+        {
+            var whistleOptions = WhistleOptionsGenerator.Default();
+
+            var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
+
+            Assert.AreEqual(ProcessWindowStyle.Hidden, processStartInformation.WindowStyle);
         }
 
         [Test]
