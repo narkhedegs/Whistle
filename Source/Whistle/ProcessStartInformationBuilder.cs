@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -33,6 +32,7 @@ namespace Narkhedegs.Diagnostics
                 WorkingDirectory = whistleOptions.WorkingDirectory
             };
 
+            //Populate arguments
             var processArguments = new List<string>();
 
             if (whistleOptions.Arguments != null && whistleOptions.Arguments.Any())
@@ -52,6 +52,15 @@ namespace Narkhedegs.Diagnostics
             if (processArguments.Count > 0)
             {
                 processStartInformation.Arguments = string.Join(" ", processArguments);
+            }
+
+            //Populate Environment Variables
+            if (whistleOptions.EnvironmentVariables != null && whistleOptions.EnvironmentVariables.Count > 0)
+            {
+                foreach (var environmentVariable in whistleOptions.EnvironmentVariables)
+                {
+                    processStartInformation.EnvironmentVariables.Add(environmentVariable.Key, environmentVariable.Value);
+                }
             }
 
             return processStartInformation;

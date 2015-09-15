@@ -15,7 +15,7 @@ var whistleOptions = new WhistleOptions {
 
 var whistle = new Whistle(whistleOptions);
 
-var result = whistle.Blow("argument1", "argument2", "argument3");
+var result = whistle.Blow("argument1", "argument2", "argument3").Result;
 ```
 
 # Whistle Options
@@ -25,3 +25,4 @@ var result = whistle.Blow("argument1", "argument2", "argument3");
 | Arguments | IEnumerable<string> | Gets or sets the set of command-line arguments to use when starting the executable. Arguments specified here will be merged with the arguments accepted by the Blow method of Whistle. | Empty Array |
 | WorkingDirectory | string | Gets or sets the working directory for the executable to be started. If nothing is specified then the default value for WorkingDirectory is the Current Directory. | Current Directory |
 | ExitTimeout | int? | ExitTimeout is time in milliseconds for which Whistle will wait for the external executable to exit. If the external executable exceeds the ExitTimeout then Whistle will terminate the executable and raise TimeoutException. If ExitTimeout is null or is not specified then the default value for ExitTimeout is infinity System.Threading.Timeout.Infinite. | infinity |
+| EnvironmentVariables | Dictionary<string,string> | A string dictionary that provides environment variables that apply to the executable and child processes. | Empty |

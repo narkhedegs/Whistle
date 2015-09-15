@@ -132,5 +132,23 @@ namespace Narkhedegs.Diagnostics.Tests
 
             Assert.AreEqual(expected, processStartInformation.Arguments);
         }
+
+        [Test]
+        public void it_should_populate_EnvironmentVariables_property_with_the_value_of_EnvironmentVariables_whistle_option()
+        {
+            var whistleOptions =
+                WhistleOptionsGenerator.Default()
+                    .WithEnvironmentVariable("key1", "value1")
+                    .WithEnvironmentVariable("key2", "value2");
+
+            var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
+
+            foreach (KeyValuePair<string, string> environmentVariable in whistleOptions.EnvironmentVariables)
+            {
+                Assert.That(processStartInformation.EnvironmentVariables.ContainsKey(environmentVariable.Key));
+                Assert.That(processStartInformation.EnvironmentVariables[environmentVariable.Key] ==
+                            environmentVariable.Value);
+            }
+        }
     }
 }
