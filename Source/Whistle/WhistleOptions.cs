@@ -10,6 +10,7 @@ namespace Narkhedegs.Diagnostics
         public WhistleOptions()
         {
             Arguments = new List<string>();
+            EnvironmentVariables = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -37,5 +38,10 @@ namespace Narkhedegs.Diagnostics
         /// If ExitTimeout is null or is not specified then the default value for ExitTimeout is infinity <see cref="System.Threading.Timeout.Infinite"/>.
         /// </summary>
         public int? ExitTimeout { get; set; }
+
+        /// <summary>
+        /// A string dictionary that provides environment variables that apply to the executable and child processes. 
+        /// </summary>
+        public Dictionary<string, string> EnvironmentVariables { get; set; }
     }
 }

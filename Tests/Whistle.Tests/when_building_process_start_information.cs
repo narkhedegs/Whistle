@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using Narkhedegs.Diagnostics.Tests.Helpers;
 using NUnit.Framework;
 
@@ -25,6 +24,36 @@ namespace Narkhedegs.Diagnostics.Tests
             var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
 
             Assert.AreEqual(false, processStartInformation.UseShellExecute);
+        }
+
+        [Test]
+        public void it_should_set_CreateNoWindow_property_to_true()
+        {
+            var whistleOptions = WhistleOptionsGenerator.Default();
+
+            var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
+
+            Assert.AreEqual(true, processStartInformation.CreateNoWindow);
+        }
+
+        [Test]
+        public void it_should_set_ErrorDialog_property_to_false()
+        {
+            var whistleOptions = WhistleOptionsGenerator.Default();
+
+            var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
+
+            Assert.AreEqual(false, processStartInformation.ErrorDialog);
+        }
+
+        [Test]
+        public void it_should_set_WindowStyle_property_to_be_hidden()
+        {
+            var whistleOptions = WhistleOptionsGenerator.Default();
+
+            var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
+
+            Assert.AreEqual(ProcessWindowStyle.Hidden, processStartInformation.WindowStyle);
         }
 
         [Test]
@@ -102,6 +131,24 @@ namespace Narkhedegs.Diagnostics.Tests
             var processStartInformation = _processStartInformationBuilder.Build(whistleOptions, extraArguments);
 
             Assert.AreEqual(expected, processStartInformation.Arguments);
+        }
+
+        [Test]
+        public void it_should_populate_EnvironmentVariables_property_with_the_value_of_EnvironmentVariables_whistle_option()
+        {
+            var whistleOptions =
+                WhistleOptionsGenerator.Default()
+                    .WithEnvironmentVariable("key1", "value1")
+                    .WithEnvironmentVariable("key2", "value2");
+
+            var processStartInformation = _processStartInformationBuilder.Build(whistleOptions);
+
+            foreach (KeyValuePair<string, string> environmentVariable in whistleOptions.EnvironmentVariables)
+            {
+                Assert.That(processStartInformation.EnvironmentVariables.ContainsKey(environmentVariable.Key));
+                Assert.That(processStartInformation.EnvironmentVariables[environmentVariable.Key] ==
+                            environmentVariable.Value);
+            }
         }
     }
 }

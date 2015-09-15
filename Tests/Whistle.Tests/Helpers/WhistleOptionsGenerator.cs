@@ -67,5 +67,12 @@ namespace Narkhedegs.Diagnostics.Tests.Helpers
             whistleOptions.ExitTimeout = exitTimeout;
             return whistleOptions;
         }
+
+        public static WhistleOptions WithEnvironmentVariable(this WhistleOptions whistleOptions, string key,
+            string value)
+        {
+            whistleOptions.EnvironmentVariables.Add(key,value);
+            return whistleOptions;
+        }
     }
 }
