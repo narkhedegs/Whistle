@@ -8,6 +8,11 @@ Whistle is available at [Nuget](https://www.nuget.org/packages/Whistle/) and can
 > Install-Package Whistle
 
 # Quick Start
+Add an using statement for Narkhedegs.
+```cs
+using Narkhedegs;
+```
+Create an instance of Whistle class with desired WhistleOptions and call Blow method to start an external executable. Blow method accepts params string[] arguments which are supplied to the external executable. The Blow method return a Task<WhistleResponse> which can be awaited using await keyword or by accessing .Result property.
 ```cs
 var whistleOptions = new WhistleOptions { 
     ExecutableName = "executable.exe"
@@ -15,8 +20,22 @@ var whistleOptions = new WhistleOptions {
 
 var whistle = new Whistle(whistleOptions);
 
-var result = whistle.Blow("argument1", "argument2", "argument3").Result;
+var response = whistle.Blow("argument1", "argument2", "argument3").Result;
 ```
+The WhistleResponse contains Standard Output and Standard Error from the external executable.
+```cs
+if(!response.HasError)
+{
+    Console.WriteLine(response.StandardOutput);
+}
+else
+{
+    Console.WriteLine(response.StandardError);
+}
+```
+
+# Advance Usage
+We can change the behaviour of Whistle object by tweaking the properties of WhistleOptions object.
 
 # Whistle Options
 | Tables        | Type | Description | Default Value |
@@ -26,3 +45,8 @@ var result = whistle.Blow("argument1", "argument2", "argument3").Result;
 | WorkingDirectory | string | Gets or sets the working directory for the executable to be started. If nothing is specified then the default value for WorkingDirectory is the Current Directory. | Current Directory |
 | ExitTimeout | int? | ExitTimeout is time in milliseconds for which Whistle will wait for the external executable to exit. If the external executable exceeds the ExitTimeout then Whistle will terminate the executable and raise TimeoutException. If ExitTimeout is null or is not specified then the default value for ExitTimeout is infinity System.Threading.Timeout.Infinite. | infinity |
 | EnvironmentVariables | Dictionary<string,string> | A string dictionary that provides environment variables that apply to the executable and child processes. | Empty |
+
+# To Do
+ - Add support for setting standard output encoding for external executable
+ - Add support for setting standard error encoding for external executable
+ - Add support for starting the external executable as a Windows Active Directory user (Integrated Windows Authentication)

@@ -1,4 +1,4 @@
-﻿namespace Narkhedegs.Diagnostics
+﻿namespace Narkhedegs
 {
     /// <summary>
     /// Provides methods to validate <see cref="WhistleOptions"/>.

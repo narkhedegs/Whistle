@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Narkhedegs.Diagnostics
+namespace Narkhedegs
 {
     /// <summary>
     /// Provides methods to build <see cref="ProcessStartInfo"/> object.
