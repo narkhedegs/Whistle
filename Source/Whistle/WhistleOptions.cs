@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Narkhedegs.Diagnostics
+namespace Narkhedegs
 {
     /// <summary>
     /// Options that can be passed to <see cref="Whistle"/> to change its behaviour.

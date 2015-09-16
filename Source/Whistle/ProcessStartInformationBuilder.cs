@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 
-namespace Narkhedegs.Diagnostics
+namespace Narkhedegs
 {
     /// <summary>
     /// Provides methods to build <see cref="ProcessStartInfo"/> object.

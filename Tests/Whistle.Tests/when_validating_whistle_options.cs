@@ -1,8 +1,8 @@
 ﻿using System;
-using Narkhedegs.Diagnostics.Tests.Helpers;
+using Narkhedegs.Tests.Helpers;
 using NUnit.Framework;
 
-namespace Narkhedegs.Diagnostics.Tests
+namespace Narkhedegs.Tests
 {
     [TestFixture]
     public class when_validating_whistle_options

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Narkhedegs.Diagnostics.Tests.Helpers
+namespace Narkhedegs.Tests.Helpers
 {
     public static class ProcessStartInformationGenerator
     {

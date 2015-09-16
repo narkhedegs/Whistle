@@ -1,4 +1,4 @@
-﻿namespace Narkhedegs.Diagnostics
+﻿namespace Narkhedegs
 {
     /// <summary>
     /// Contains the standard output and standard error responses of the executable started by <see cref="Whistle"/>.

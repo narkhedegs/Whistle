@@ -1,7 +1,7 @@
 ﻿{
   "version": "0.0.0",
   "title": "Whistle",
-  "description": "Whistle",
+  "description": "Whistle is a helper C# library to start external executable from within a .NET process and return any output produced by the executable.",
   "authors": [
     "narkhedegs@gmail.com"
   ],
@@ -10,6 +10,10 @@
   ],
   "copyright": "Copyright (C) narkhedegs@gmail.com",
   "tags": [
+    "process",
+    "executable",
+    "process starter",
+    "process wrapper"
   ],
   "projectUrl": "https://github.com/narkhedegs/Whistle",
   "licenseUrl": "https://raw.githubusercontent.com/narkhedegs/Whistle/master/LICENSE",

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Narkhedegs.Diagnostics
+namespace Narkhedegs
 {
     /// <summary>
     /// Provides methods to start external executable from within a .NET process.

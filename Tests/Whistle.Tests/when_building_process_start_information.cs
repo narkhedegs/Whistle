@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using Narkhedegs.Diagnostics.Tests.Helpers;
+using Narkhedegs.Tests.Helpers;
 using NUnit.Framework;
 
-namespace Narkhedegs.Diagnostics.Tests
+namespace Narkhedegs.Tests
 {
     [TestFixture]
     public class when_building_process_start_information
